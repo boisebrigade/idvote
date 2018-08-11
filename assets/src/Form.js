@@ -14,9 +14,15 @@ export default class extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('An Address was submitted: ' + this.state.value);
-    event.preventDefault();;
-  }
+    event.preventDefault();
+    fetch('https://httpbin.org/post', {
+      method: 'POST',
+      body: this.state.value
+    })
+    .then(response => response.json())
+    .then(response => console.log('Success:', response))
+    .catch(error => console.error('Error:', error));
+  };
 
   render() {
     return (
