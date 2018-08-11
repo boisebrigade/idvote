@@ -40,8 +40,4 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :idvote, Idvote.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "idvote_dev",
-  hostname: "localhost",
   pool_size: 10

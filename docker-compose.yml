@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  postgres:
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=idvote
+    image: mdillon/postgis:10
+    volumes:
+      - ${PWD}/local-test-db.sh:/docker-entrypoint-initdb.d/local-test-db.sh
+    ports:
+      - "5440:5432"
