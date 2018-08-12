@@ -38,7 +38,12 @@ defmodule Idvote.Mixfile do
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:ex_twiml, "~> 2.1.3"},
+      {:tesla, "~> 1.0.0"},
+      {:jason, ">= 1.0.0"},
+      {:geo_postgis, "~> 2.0"},
+      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false}
     ]
   end
 

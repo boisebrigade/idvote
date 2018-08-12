@@ -11,5 +11,6 @@ config :logger, level: :warn
 
 # Configure your database
 config :idvote, Idvote.Repo,
+  types: Idvote.PostgresTypes,
   adapter: Ecto.Adapters.Postgres,
   pool: Ecto.Adapters.SQL.Sandbox
