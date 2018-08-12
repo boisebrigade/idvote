@@ -45,13 +45,6 @@ defmodule IdvoteWeb do
     end
   end
 
-  def channel do
-    quote do
-      use Phoenix.Channel
-      import IdvoteWeb.Gettext
-    end
-  end
-
   @doc """
   When used, dispatch to the appropriate controller/view/etc.
   """
