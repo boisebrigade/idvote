@@ -31,9 +31,6 @@ defmodule IdvoteWeb do
       use Phoenix.View, root: "lib/idvote_web/templates",
                         namespace: IdvoteWeb
 
-      # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
-
       import IdvoteWeb.Router.Helpers
       import IdvoteWeb.ErrorHelpers
       import IdvoteWeb.Gettext
@@ -45,13 +42,6 @@ defmodule IdvoteWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
-    end
-  end
-
-  def channel do
-    quote do
-      use Phoenix.Channel
-      import IdvoteWeb.Gettext
     end
   end
 

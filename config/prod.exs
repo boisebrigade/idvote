@@ -15,11 +15,25 @@ use Mix.Config
 # which you typically run after static files are built.
 config :idvote, IdvoteWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
+  url: [
+    scheme: "https",
+    port: String.to_integer(System.get_env("PORT") || "443"),
+    host:
+      System.get_env("HOST") |> String.replace("https://", "") |> String.replace("http://", "") ||
+        "localhost"
+  ],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+# Configure your database
+config :idvote, Idvote.Repo,
+  load_from_system_env: true,
+  adapter: Ecto.Adapters.Postgres,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5"),
+  ssl: true
 
 # ## SSL Support
 #
@@ -58,7 +72,3 @@ config :logger, level: :info
 #
 #     config :idvote, IdvoteWeb.Endpoint, server: true
 #
-
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"

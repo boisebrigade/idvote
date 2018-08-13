@@ -11,9 +11,6 @@ config :logger, level: :warn
 
 # Configure your database
 config :idvote, Idvote.Repo,
+  types: Idvote.PostgresTypes,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "idvote_test",
-  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

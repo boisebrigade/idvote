@@ -5,7 +5,10 @@ defmodule IdvoteWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", IdvoteWeb do
+  scope "/", IdvoteWeb do
     pipe_through :api
+
+    post("/find", WebController, :find)
+    post("/sms", TwilioController, :sms)
   end
 end
