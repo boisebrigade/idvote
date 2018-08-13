@@ -15,9 +15,13 @@ export default class extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('https://httpbin.org/post', {
+    fetch(`${process.env.PUBLIC_URL}/api/find`, {
       method: 'POST',
-      body: this.state.value
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({address: this.state.value})
     })
     .then(response => response.json())
     .then(response => console.log('Success:', response))
