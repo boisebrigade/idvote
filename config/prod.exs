@@ -22,8 +22,7 @@ config :idvote, IdvoteWeb.Endpoint,
       System.get_env("HOST") |> String.replace("https://", "") |> String.replace("http://", "") ||
         "localhost"
   ],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # Do not print debug messages in production
 config :logger, level: :info

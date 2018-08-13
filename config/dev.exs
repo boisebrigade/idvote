@@ -12,9 +12,9 @@ config :idvote, IdvoteWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--watch-stdin",
+    npm: [
+      "run",
+      "watch",
       cd: Path.expand("../assets", __DIR__)
     ]
   ],
@@ -22,8 +22,7 @@ config :idvote, IdvoteWeb.Endpoint,
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$}
     ]
-  ],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  ]
 
 # ## SSL Support
 #

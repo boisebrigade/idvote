@@ -48,8 +48,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "watch": "NODE_ENV=development webpack --watch-stdin --colors",
-    "start": "node scripts/start.js",
+    "build": "NODE_ENV=production webpack --config config/webpack.config.prod.js",
+    "watch": "NODE_ENV=development webpack --config config/webpack.config.dev.js --watch-stdin --colors",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
