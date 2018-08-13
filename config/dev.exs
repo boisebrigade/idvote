@@ -10,7 +10,20 @@ config :idvote, IdvoteWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  check_origin: false
+  check_origin: false,
+  watchers: [
+    node: [
+      "node_modules/webpack/bin/webpack.js",
+      "--watch-stdin",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ],
+  live_reload: [
+    patterns: [
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$}
+    ]
+  ],
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
 # ## SSL Support
 #
