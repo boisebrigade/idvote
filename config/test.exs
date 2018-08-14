@@ -9,8 +9,11 @@ config :idvote, IdvoteWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+config :tesla, adapter: Tesla.Mock
+
 # Configure your database
 config :idvote, Idvote.Repo,
   types: Idvote.PostgresTypes,
   adapter: Ecto.Adapters.Postgres,
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")

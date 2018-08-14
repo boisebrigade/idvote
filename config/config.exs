@@ -14,14 +14,15 @@ config :idvote, IdvoteWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "X6NNRiY9m7f++qjRfGAe06bSJwYdoGkmbYR8N/Rec6HAebrBMTSHpX0VS8GzjbJv",
   render_errors: [view: IdvoteWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: Idvote.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Idvote.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+config :phoenix, :format_encoders, json: Jason
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

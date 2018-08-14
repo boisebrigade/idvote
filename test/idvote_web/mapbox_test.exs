@@ -1,17 +1,27 @@
 defmodule IdvoteWeb.MapboxTest do
   use IdvoteWeb.ConnCase, async: true
 
-  alias Idvote.Precinct
+  import Tesla.Mock
+
+  @dummy_address "123 Joe Dirt Rd"
+
+  @mock_url "https://api.mapbox.com/geocoding/v5/mapbox.places/" <>
+            URI.encode(@dummy_address) <> ".json"
 
   setup do
+    mock(fn
+      env = %{method: :get} ->
+        send self(), env
+    end)
+
     :ok
   end
 
-  test "test" do
-    {:ok, result} = Idvote.Mapbox.Geoencode.encode("500 S 8th St Boise Idaho")
+  test "our mapbox Geoencode has the correct encoding and query parameters" do
+    request = Idvote.Mapbox.Geoencode.encode(@dummy_address)
 
-    assert result.status === 200
+    assert {:ok, _} = request
+    assert {:ok,  %Tesla.Env{query: %{access_token: _, country: _, limit: _, types: _}}} = request
+    assert {:ok, %Tesla.Env{url: @mock_url}} = request
   end
-
-
 end

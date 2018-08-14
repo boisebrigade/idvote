@@ -43,7 +43,8 @@ defmodule Idvote.Mixfile do
       {:tesla, "~> 1.0.0"},
       {:jason, ">= 1.0.0"},
       {:geo_postgis, "~> 2.0"},
-      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false}
+      {:timex, "~> 3.1"},
+      {:mix_test_watch, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end
 
