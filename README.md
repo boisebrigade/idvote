@@ -8,7 +8,7 @@
 - Run migration: `env $(cat .env | xargs) mix ecto.reset`
 - Start Phoenix: `env $(cat .env | xargs) mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit [`localhost:4000/index.html`](http://localhost:4000/index.html) from your browser.
 
 ## Learn more
 

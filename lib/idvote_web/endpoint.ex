@@ -7,7 +7,7 @@ defmodule IdvoteWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :idvote, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(index.html favicon.ico robots.txt manifest.json static)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

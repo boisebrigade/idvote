@@ -1,8 +1,6 @@
 defmodule Idvote.Subscriber do
-  alias Idvote.Precint
+  alias Idvote.Precinct
 
-
-  alias Idvote.{Repo, Precinct}
   use Ecto.Schema
   import Ecto.Changeset
 

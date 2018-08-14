@@ -15,7 +15,12 @@ export default class extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  fetchAddress() {
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
     fetch(`${process.env.PUBLIC_URL}/api/find`, {
       method: 'POST',
       headers: {
@@ -25,21 +30,8 @@ export default class extends React.Component {
       body: JSON.stringify({address: this.state.value})
     })
     .then(response => response.json())
-    .then(response => {
-      console.log(response)
-      return response;
-    })
-    .then(response => this.setState({address: response.data}))
+    .then(response => console.log('Success:', response))
     .catch(error => console.error('Error:', error));
-  };
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.fetchAddress();
   };
 
   getValidationState() {

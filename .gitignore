@@ -26,4 +26,8 @@ npm-debug.log
 # variables.
 /config/*.secret.exs
 
+# Environment specific variables
 .env*
+
+# Ignore any SQL dumps
+*.sql
