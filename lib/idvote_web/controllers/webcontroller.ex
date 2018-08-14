@@ -4,7 +4,7 @@ defmodule IdvoteWeb.WebController do
   alias Idvote.Precinct
   alias Idvote.Mapbox.Geoencode
 
-  def find(conn, params = %{"Address" => address}) do
+  def find(conn, %{"address" => address}) do
     %{"features" => features} = Geoencode.encode(address)
 
     %{"center" => [x, y]} = features |> Enum.at(0)
