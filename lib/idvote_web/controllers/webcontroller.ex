@@ -2,15 +2,32 @@ defmodule IdvoteWeb.WebController do
   use IdvoteWeb, :controller
 
   alias Idvote.Precinct
-  alias Idvote.Mapbox.Geoencode
 
-  def find(conn, %{"address" => address}) do
-    %{"features" => features} = Geoencode.encode(address)
+  @date_format "%m/%d/%Y"
+  @time_format "%I:%M %p"
 
-    %{"center" => [x, y]} = features |> Enum.at(0)
+  def find(conn, %{"address" => street_address}) do
+    %Precinct{
+      name: name,
+      address: polling_place_address,
+      opening_time: opening_time,
+      closing_time: closing_time,
+      geometry: precinct,
+      date: date
+    } = Precinct.find_by_address(street_address)
 
-    %Precinct{address: address} = Precinct.find(%Geo.Point{coordinates: {x, y}, srid: 4269})
+    opening_time = Timex.format!(opening_time, @time_format, :strftime)
+    closing_time = Timex.format!(closing_time, @time_format, :strftime)
 
-    json conn, %{"Address" => address, "Time" => "8:00 am to 8:00 pm"}
+    date = Timex.format!(date, @date_format, :strftime)
+
+    json(conn, %{
+      "name" => name,
+      "address" => polling_place_address,
+      "opening_time" => opening_time,
+      "closing_time" => closing_time,
+      "precinct" => precinct,
+      "date" => date
+    })
   end
 end

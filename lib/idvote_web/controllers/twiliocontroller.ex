@@ -2,18 +2,27 @@ defmodule IdvoteWeb.TwilioController do
   use IdvoteWeb, :controller
 
   alias Idvote.Precinct
-  alias Idvote.Mapbox.Geoencode
-
   alias IdvoteWeb.Twiml
 
-  def sms(conn, %{"Body" => address}) do
-    %{"features" => features} = Geoencode.encode(address)
+  @date_format "%m/%d/%Y"
+  @time_format "%I:%M %p"
 
-    %{"center" => [x, y]} = features |> Enum.at(0)
+  def sms(conn, %{"Body" => street_address}) do
+    %Precinct{
+      name: name,
+      address: polling_place_address,
+      opening_time: opening_time,
+      closing_time: closing_time,
+      date: date
+    } = Precinct.find_by_address(street_address)
 
-    %Precinct{address: address} = Precinct.find(%Geo.Point{coordinates: {x, y}, srid: 4269})
+    opening_time = Timex.format!(opening_time, @time_format, :strftime)
+    closing_time = Timex.format!(closing_time, @time_format, :strftime)
 
-    response = "Your polling location is at #{address}"
+    date = Timex.format!(date, @date_format, :strftime)
+
+    response =
+      "Your place it to vote is #{name} at #{polling_place_address}. It will be open from #{opening_time} to #{closing_time} on #{date}. Please take a valid Photo ID. More details found at https://idvote.org"
 
     conn
     |> encode(response)

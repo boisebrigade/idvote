@@ -1,0 +1,23 @@
+language: elixir
+elixir: '1.7.2'
+otp_release: '21.0'
+
+cache:
+  directories:
+    - _build
+    - deps
+
+env:
+  global:
+    - MIX_ENV=test
+    - DATABASE_URL=postgres://postgres@localhost:5432/travis_ci_test
+
+addons:
+  postgresql: 9.6
+  apt:
+    packages:
+    - postgresql-9.6-postgis-2.3
+
+before_script:
+  - psql -U postgres -c "create extension postgis"
+  - mix ecto.setup
