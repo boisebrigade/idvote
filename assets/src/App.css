@@ -25,10 +25,7 @@
 /* Main Message */
 
 .main {
-  margin-top:7rem;
-  margin-bottom:7rem;
-  margin-left:auto;
-  margin-right:auto;
+  margin: 7rem auto;
   padding-left: 10%;
   padding-right: 10%;
   font-style: normal;

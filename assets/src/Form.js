@@ -10,8 +10,6 @@ export default class extends React.Component {
       address:''
     };
 
-    this.fetchAddress = this.fetchAddress.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -50,7 +48,7 @@ export default class extends React.Component {
         <p className="main">{address}</p>
         <p className="main">To find our where you vote, please enter your address</p>
         <div className="">
-          <Form inline className="form" onSubmit={this.handleSubmit}>
+          <Form inline className="form" onSubmit={e => this.handleSubmit(e)}>
             <FormGroup
               controlId="formBasicText">
               <FormControl
