@@ -51,4 +51,4 @@ config :phoenix, :stacktrace_depth, 20
 config :idvote, Idvote.Repo,
   types: Idvote.PostgresTypes,
   adapter: Ecto.Adapters.Postgres,
-  pool_size: 10
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
