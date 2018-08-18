@@ -7,7 +7,6 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import P404 from './pages/404'
 
-import Problem from './pages/Problem'
 import PollingPlace from './pages/PollingPlace'
 
 import './App.css'
@@ -18,8 +17,7 @@ const App = () =>
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/poll/problem" component={Problem} />
-        <Route path="/poll/:pid" component={PollingPlace} />
+        <Route path="/poll/:address" component={PollingPlace} />
         <Route component={P404} />
       </Switch>
     </React.Fragment>

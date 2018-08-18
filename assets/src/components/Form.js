@@ -50,9 +50,11 @@ export default class extends React.Component {
       // else {
         const json = await response.json()
 
+        const address = this.state.address.split(' ').join('+');
+
         this.setState({
           redirect: {
-            pathname: `/poll/${validResponse.id}`,
+            pathname: `/poll/${address}`,
             state: {...validResponse}
           }
         })
