@@ -10,6 +10,7 @@ export default class extends React.Component {
       address:''
     };
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -28,7 +29,10 @@ export default class extends React.Component {
       body: JSON.stringify({address: this.state.value})
     })
     .then(response => response.json())
-    .then(response => console.log('Success:', response))
+    .then(response => {
+      this.setState({address: response.data});
+      console.log('Success:', response);
+    })
     .catch(error => console.error('Error:', error));
   };
 
@@ -46,7 +50,7 @@ export default class extends React.Component {
     return (
       <div className="container">
         <p className="main">{address}</p>
-        <p className="main">To find our where you vote, please enter your address</p>
+        <p className="main">To find out where you vote, please enter your address</p>
         <div className="">
           <Form inline className="form" onSubmit={e => this.handleSubmit(e)}>
             <FormGroup
