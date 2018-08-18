@@ -1,32 +1,105 @@
+
 .App {
-  text-align: center;
+  color: #297FCA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.App-logo {
-  /* animation: App-logo-spin infinite 20s linear; */
-  height: 80px;
+.logo {
 }
 
-.App-header {
-  background-color: inherit;
-  height: 150px;
-  padding: 20px;
-  color: white;
+/* Top */
+.header {
+  height:5rem;
+  padding:2rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+.header ul li {
+  margin-right:2rem;
 }
 
-.App-intro {
-  font-size: large;
+.title {
 }
 
-.Form input {
-  margin: 1rem;
+/* Main Message */
+
+.main {
+  margin: 7rem auto;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 58px;
+  font-size: 52px;
+  letter-spacing: -2px;
 }
 
-/* @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+.form {
+
+  margin-left: 10%;
+}
+.form button {
+padding-top: -5%;
+padding-bottom: -5%;
+}
+.form div input {
+  margin-right: 5%;
+  width: 700px !important;
+
+}
+
+/* Bottom */
+
+.dividerline {
+  height: 0px;
+  border: 2px dashed #297FCA;
+  margin-top: 5rem;
+}
+.footer{
+  height:5rem;
+}
+.lowerButtons{
+  line-height:2rem;
+  vertical-align:middle;
+}
+.lowerButtons button{
+  margin:0 1rem 0 1rem;
+}
+
+/* Medium devices */
+@media (max-width: 992px) {
+  .main {
+    margin-top:3rem;
+    margin-bottom:3rem;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-style: normal;
+    font-weight: 300;
+    line-height:3rem;
+    font-size: 35px;
+    width: 400px;
+    margin-top: 1rem
+  }
+
+  .form div input {
+    margin: 0 1rem 0 0rem;
+    width:400px !important;
+  }
+}
+
+/* Small devices */
+@media (max-width: 768px) {
+  .form div input {
+    margin-left: 1rem;
+    width:200px !important;
+  }
+  .dividerline{
+    display:none;
+  }
+  .btn {
+	font-size:11px;
+    padding:4px 6px;
+  }
+
+}

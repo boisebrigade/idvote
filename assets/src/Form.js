@@ -1,12 +1,17 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+const URL = "https://httpbin.org/post";
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
 
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      value: '',
+      address:''
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
@@ -24,19 +29,44 @@ export default class extends React.Component {
       body: JSON.stringify({address: this.state.value})
     })
     .then(response => response.json())
-    .then(response => console.log('Success:', response))
+    .then(response => {
+      this.setState({address: response.data});
+      console.log('Success:', response);
+    })
     .catch(error => console.error('Error:', error));
   };
 
+  getValidationState() {
+    const length = this.state.value.length;
+    if (length > 10) return 'success';
+    else if (length > 5) return 'warning';
+    else if (length > 0) return 'error';
+    return null;
+  }
+
+
   render() {
+    const { address } = this.state;
     return (
-      <form className="Form" onSubmit={this.handleSubmit}>
-        <label>
-          Address:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <Button bsSize="small" type="submit">Submit</Button>
-      </form>
+      <div className="container">
+        <p className="main">{address}</p>
+        <p className="main">To find out where you vote, please enter your address</p>
+        <div className="">
+          <Form inline className="form" onSubmit={e => this.handleSubmit(e)}>
+            <FormGroup
+              controlId="formBasicText">
+              <FormControl
+                type="text"
+                bsSize="large"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+              <FormControl.Feedback />
+            </FormGroup>
+            <Button bsStyle="primary" type="submit">Submit</Button>
+          </Form>
+        </div>
+      </div>
     );
   }
 }
