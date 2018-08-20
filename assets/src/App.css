@@ -210,7 +210,7 @@ h2 {
 .poll__calendar {
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin: 15px auto 0 auto;
 }
 
 .poll__icon {
@@ -219,8 +219,9 @@ h2 {
 
 @media only screen and (min-width: 768px) {
   .header {
+    width: calc(100% - 4rem);
     margin: 55px auto 150px auto;
-    padding: 0;
+    padding: 0 2rem;
   }
 
   .header__container {
@@ -243,6 +244,41 @@ h2 {
     text-indent: 20px;
   }
 
+  .address__submit {
+    margin-left: 20px;
+  }
+
+  .address__form {
+    height: 60px;
+    width: 100%;
+    margin: 90px 0 0 0;
+    padding: 0;
+  }
+
+  .mapboxgl-map {
+    height: 500px;
+  }
+
+  .horizontal_rule {
+    margin: 150px auto 50px auto;
+  }
+
+  .footer {
+    flex-direction: row;
+    margin: 0 20px;
+  }
+
+  .footer__action {
+    margin: 0 15px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .header {
+    width: 768px;
+    padding: 0;
+  }
+
   .poll {
     flex-direction: row;
   }
@@ -261,18 +297,7 @@ h2 {
   }
 
   .poll__calendar {
-    margin-right: auto;
-  }
-
-  .address__submit {
-    margin-left: 20px;
-  }
-
-  .address__form {
-    height: 60px;
-    width: 100%;
-    margin: 90px 0 0 0;
-    padding: 0;
+    margin: 0 0 0 auto;
   }
 
   .mapboxgl-map {
@@ -280,17 +305,6 @@ h2 {
     height: 300px;
   }
 
-  .horizontal_rule {
-    margin: 150px auto 50px auto;
-  }
-
-  .footer {
-    flex-direction: row;
-    margin: 0 20px;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
   .container {
     min-width: 768px;
     margin: 0 auto;
@@ -298,6 +312,10 @@ h2 {
 }
 
 @media only screen and (min-width: 1200px) {
+  .header {
+    width: 1024px;
+  }
+
   .container {
     min-width: 1024px;
     margin: 0 auto;
