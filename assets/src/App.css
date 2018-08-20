@@ -1,27 +1,34 @@
 html, body {
-  margin: 0;
   padding: 0;
   font-family: 'Roboto';
   font-size: 16px;
   line-height: 1;
   background-color:#E4F1FD;
   color: #297FCA;
+  display: flex;
+  margin: 0 auto;
 }
 
 .container {
-  width: 910px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .address__form {
   display: flex;
-  width: 100%;
-  height: 60px;
-
-  margin: 0;
-  margin-top: 90px;
-  padding: 0;
+  height: 50px;
+  margin: 2rem auto 0 auto;
   border: none;
+
+  padding: 0 2rem;
+}
+
+.address__title {
+  padding: 0 1rem;
+}
+
+.address__title br {
+  display: none;
 }
 
 .address__wrap {
@@ -40,7 +47,6 @@ html, body {
   width: 100%;
   height: 100%;
   margin-left: 20px;
-  text-indent: 20px;
 }
 
 .address__view {
@@ -67,8 +73,6 @@ html, body {
 
   width: 150px;
 
-  margin-left: 20px;
-
   cursor: pointer;
 }
 
@@ -79,14 +83,18 @@ html, body {
 }
 
 .header {
-  width: 1300px;
-  margin: 0 auto;
-  margin-top: 55px;
-  margin-bottom: 150px;
+  margin: 2rem auto 2rem auto;
+  padding: 0 2rem;
+}
+
+.header__menu {
+  margin-left: auto;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .header__container {
-  display: flex;
+  display: none;
   list-style-type: none;
 
   margin: 0;
@@ -116,7 +124,7 @@ html, body {
 }
 
 .horizontal_rule {
-  margin: 150px auto 50px auto;
+  margin: 50px auto 50px auto;
   width: 80%;
   padding: 3px 0 0 0;
   background: repeating-linear-gradient(to right, #297FCA, #297FCA 5px, transparent 5px, transparent 10px);
@@ -129,6 +137,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .footer__action {
@@ -137,9 +146,9 @@ html, body {
   border-radius: 4px;
   border: 2px solid #297FCA;
   padding: 15px 22px;
-  margin: 0 20px;
   cursor: pointer;
   text-decoration: none;
+  margin: 15px auto;
 }
 
 h1 {
@@ -169,6 +178,7 @@ h2 {
 
 .poll {
   display: flex;
+  flex-direction: column-reverse;
   margin-top: 70px;
 }
 
@@ -176,13 +186,18 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
-  margin-right: 50px;
+}
+
+.mapboxgl-map {
+  width: calc(100% - 4rem);
+  height: 300px;
+  margin: 0 2rem;
 }
 
 .poll__when {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
 }
@@ -190,13 +205,101 @@ h2 {
 .poll__hours {
   line-height: 30px;
   font-size: 20px;
-  margin-right: auto;
 }
+
 .poll__calendar {
-  margin-right: auto;
   display: flex;
   align-items: center;
+  margin: 0 auto;
 }
+
 .poll__icon {
   margin-right: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header {
+    margin: 55px auto 150px auto;
+    padding: 0;
+  }
+
+  .header__container {
+    display: flex;
+  }
+
+  .header__menu {
+    display: none;
+  }
+
+  .address__title {
+    padding: 0;
+  }
+
+  .address__title br {
+    display: block;
+  }
+
+  .address__input {
+    text-indent: 20px;
+  }
+
+  .poll {
+    flex-direction: row;
+  }
+
+  .poll__when {
+    flex-direction: row;
+  }
+
+  .poll__details {
+    width: 50%;
+    margin-right: 50px;
+  }
+
+  .poll__hours {
+    margin-right: auto;
+  }
+
+  .poll__calendar {
+    margin-right: auto;
+  }
+
+  .address__submit {
+    margin-left: 20px;
+  }
+
+  .address__form {
+    height: 60px;
+    width: 100%;
+    margin: 90px 0 0 0;
+    padding: 0;
+  }
+
+  .mapboxgl-map {
+    width: 45%;
+    height: 300px;
+  }
+
+  .horizontal_rule {
+    margin: 150px auto 50px auto;
+  }
+
+  .footer {
+    flex-direction: row;
+    margin: 0 20px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    min-width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    min-width: 1024px;
+    margin: 0 auto;
+  }
 }

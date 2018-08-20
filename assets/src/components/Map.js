@@ -7,11 +7,7 @@ const Map = ReactMapboxGl({
 
 export default () => <Map
   style="mapbox://styles/mapbox/streets-v9"
-  center={[-116.2044,43.615]}
-  containerStyle={{
-    width: "45%",
-    height: "300px"
-  }}>
+  center={[-116.2044,43.615]}>
   <Layer
     type="symbol"
     id="marker"

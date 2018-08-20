@@ -71,7 +71,7 @@ export default class extends React.Component {
     }
     else {
       return <div className="container">
-        <h1>Enter your address to find out <br/> where you vote in Idaho</h1>
+        <h1 className="address__title">Enter your address to find out <br/> where you vote in Idaho</h1>
         <form className="address__form" onSubmit={this.addressSubmit}>
           <div className="address__wrap">
             <input

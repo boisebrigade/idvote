@@ -41,7 +41,11 @@ export default class extends Component {
                       fill="#3FA2F7"/>
               </svg>
             </li>
+
           </ul>
+          <div className="header__menu">
+            &#9776;
+          </div>
         </nav>
       </header>
     );
