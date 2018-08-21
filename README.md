@@ -20,3 +20,5 @@ Now you can visit [`localhost:4000/index.html`](http://localhost:4000/index.html
 
 ## License
 ISC, 2018, Code for America
+
+See [LICENSE.md](LICENSE.md)
