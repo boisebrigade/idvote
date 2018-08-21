@@ -7,6 +7,8 @@ defmodule Idvote.Precinct do
   import Geo.PostGIS
   import Ecto.{Query, Changeset}
 
+  require Logger
+
   schema "precinct" do
     field(:gid, :integer)
     field(:name, :string)
@@ -26,9 +28,25 @@ defmodule Idvote.Precinct do
   end
 
   def find_by_address(address) do
-    {:ok, %Tesla.Env{body: %{"features" => [%{"center" => [x, y]}]}}} = Geoencode.encode(address)
+    case Geoencode.encode(address) do
+      {:ok, %Tesla.Env{status: 200, body: %{"features" => [%{"center" => [x, y]}]}}} ->
+        precinct = find(%Geo.Point{coordinates: {x, y}, srid: 4269})
 
-    find(%Geo.Point{coordinates: {x, y}, srid: 4269})
+        if precinct do
+          precinct
+        else
+          %Precinct{}
+        end
+
+      {:ok, %Tesla.Env{status: 200, body: %{"features" => []}}} ->
+        %Precinct{}
+
+      {:ok, %Tesla.Env{body: %{"message" => message}}} ->
+        Logger.error(message)
+
+      _ ->
+        nil
+    end
   end
 
   defp find(geom) do
