@@ -9,22 +9,29 @@ defmodule Idvote.Precinct do
 
   require Logger
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
+
+  @fields [:gid, :county, :name, :address, :opening_time, :closing_time, :date, :geometry]
+
   schema "precinct" do
     field(:gid, :integer)
+    field(:county, :string)
+
     field(:name, :string)
     field(:address, :string)
-    field(:geometry, Geo.PostGIS.Geometry)
-    field(:county, :string)
     field(:opening_time, :time)
     field(:closing_time, :time)
     field(:date, :date)
+
+    field(:geometry, Geo.PostGIS.Geometry)
   end
 
-  @doc false
   def changeset(precinct, attrs) do
     precinct
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, @fields)
+    |> validate_required(@fields)
+    |> unique_constraint(:county, name: :precinct_county_gid_index)
   end
 
   def find_by_address(address) do
