@@ -7,25 +7,43 @@ defmodule IdvoteWeb.TwilioController do
   @date_format "%m/%d/%Y"
   @time_format "%I:%M %p"
 
+  @query """
+  query GetPrecinct($address: String!) {
+    precinct(address: $address) {
+      name
+      address
+      closingTime
+      openingTime
+      date
+    }
+  }
+  """
+
   def sms(conn, %{"Body" => street_address}) do
-    %Precinct{
-      name: name,
-      address: polling_place_address,
-      opening_time: opening_time,
-      closing_time: closing_time,
-      date: date
-    } = Precinct.find_by_address(street_address)
+    case Absinthe.run(@query, Idvote.Schema, variables: %{"address" => street_address}) do
+      {:ok,
+       %{
+         data: %{
+           "precinct" => %{
+             "name" => name,
+             "address" => address,
+             "openingTime" => opening_time,
+             "closingTime" => closing_time,
+             "date" => date
+           }
+         }
+       }} ->
+        response =
+          "Your place it to vote is #{name} at #{address}. It will be open from
+#{opening_time} to #{closing_time} on #{date}. Please take a valid Photo ID. More details found at https://idvote.org"
 
-    opening_time = Timex.format!(opening_time, @time_format, :strftime)
-    closing_time = Timex.format!(closing_time, @time_format, :strftime)
+        conn
+        |> encode(response)
 
-    date = Timex.format!(date, @date_format, :strftime)
-
-    response =
-      "Your place it to vote is #{name} at #{polling_place_address}. It will be open from #{opening_time} to #{closing_time} on #{date}. Please take a valid Photo ID. More details found at https://idvote.org"
-
-    conn
-    |> encode(response)
+      _ ->
+        conn
+        |> send_resp(200, "")
+    end
   end
 
   defp encode(conn, response) do
