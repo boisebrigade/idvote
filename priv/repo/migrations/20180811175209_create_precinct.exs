@@ -9,6 +9,8 @@ defmodule Idvote.Repo.Migrations.CreatePrecinct do
 
       add(:name, :string)
       add(:address, :string)
+      add(:address_geoencoded, :geometry)
+
       add(:opening_time, :time)
       add(:closing_time, :time)
       add(:date, :date)
