@@ -48,9 +48,8 @@ defmodule Idvote.Resolver.Precincts do
   end
 
   def autocomplete(%{}, %{address: address}, _) do
-    Mapbox.autocomplete(address)
-    |> IO.inspect
-    |> case  do
+
+    case Mapbox.autocomplete(address) do
       {:ok, %Tesla.Env{status: 200, body: %{"features" => locations}}} ->
         suggestions =
           Enum.reduce(locations, [], fn
@@ -72,7 +71,6 @@ defmodule Idvote.Resolver.Precincts do
   end
 
   defp find_by_address(address) do
-    IO.inspect Mapbox.geoencode(address)
     case Mapbox.geoencode(address) do
       # If we get back a result with a X and Y
       {:ok, %Tesla.Env{status: 200, body: %{"features" => [%{"center" => [x, y]}]}}} ->
