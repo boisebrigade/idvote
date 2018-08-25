@@ -1,11 +1,7 @@
 defmodule IdvoteWeb.TwilioController do
   use IdvoteWeb, :controller
 
-  alias Idvote.Precinct
   alias IdvoteWeb.Twiml
-
-  @date_format "%m/%d/%Y"
-  @time_format "%I:%M %p"
 
   @query """
   query GetPrecinct($address: String!) {
