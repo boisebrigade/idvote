@@ -6,7 +6,7 @@ import ReactMapboxGl, {
 } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoidHlsZXJzYW1wbGVzY2ZhIiwiYSI6ImNqa29nMWVsczEyd2EzcHA4N3pld3htN2cifQ.-SOpZlIkvgX0BdUqLsrjSA'
+  accessToken: process.env.MAPBOX_ACCESS_TOKEN
 });
 
 const precinctStyle = {
