@@ -6,6 +6,7 @@
   --blue: #3FA2F7;
   --dark-blue: #297FCA;
   --white: #FFF;
+  --grey: #EFEFEF;
 }
 
 html, body {
@@ -26,15 +27,15 @@ main {
 }
 
 .f1 {
-  font-size: 52px
+  font-size: calc(32px + (52 - 32) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .f2 {
-  font-size: 46px
+  font-size: calc(28px + (46 - 28) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .f3 {
-  font-size: 32px;
+  font-size: calc(22px + (46 - 22) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .f4 {
@@ -64,10 +65,6 @@ main {
 .container {
   width: 100%;
   margin: 0 auto;
-}
-
-.address {
-  margin-top: auto;
 }
 
 .address__form {
@@ -110,8 +107,9 @@ main {
   margin-right: 20px;
 }
 
-.address__input::placeholder {
-  color: var(--dark-blue);
+.address__input[placeholder] {
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .address__input:focus,
@@ -156,7 +154,7 @@ main {
 }
 
 .address__result:hover {
-  background-color: #EFEFEF;
+  background-color: var(--grey);
 }
 
 .address__result:first-of-type {
@@ -257,8 +255,12 @@ main {
   height: 100%;
 }
 
-.poll {
+.poll, .address, .problem, .loading {
   margin-top: auto;
+}
+
+.problem {
+  text-align: center;
 }
 
 .poll__map {
@@ -320,6 +322,25 @@ main {
 
 .poll__icon {
   margin-right: 5px;
+}
+
+.loading:before {
+  display: block;
+  content: ' ';
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+  border: 4px solid var(--white);
+  border-radius: 50%;
+  border-top-color: var(--dark-blue);
+  animation: spinner 1s ease-in-out infinite;
+}
+
+@keyframes spinner {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spinner {
+  to { -webkit-transform: rotate(360deg); }
 }
 
 @media only screen and (min-width: 768px) {

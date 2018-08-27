@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import {Redirect} from 'react-router'
 
-import { Query } from 'react-apollo';
+import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 
 import queryString from 'query-string'
@@ -48,16 +48,25 @@ export default props => {
     />
   }
 
-  return <Query query={getPrecinct} variables={{address: address}} errorPolicy="all"s>
+  return <Query query={getPrecinct} variables={{address: address}}
+                errorPolicy="all">
     {({loading, error, data}) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) {
+        return <React.Fragment>
+          <div className="loading"/>
+          <Footer/>
+        </React.Fragment>
+      }
 
       if (error) {
-        return <Problem>
-          {error.graphQLErrors.map(({message}, i) => (
-              <span key={i}>{message}</span>
-          ))}
-        </Problem>
+        return <React.Fragment>
+          <Problem>
+            {error.graphQLErrors.map(({message}, i) => (
+              <h3 key={i}>{message}</h3>
+            ))}
+          </Problem>
+          <Footer/>
+        </React.Fragment>
       }
 
       return <React.Fragment>
@@ -65,6 +74,6 @@ export default props => {
         <Footer/>
       </React.Fragment>
     }
-  }
+    }
   </Query>
 }

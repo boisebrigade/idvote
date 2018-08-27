@@ -8,6 +8,7 @@ defmodule Idvote.Resolver.Precincts do
   @time_format "%I:%M %p"
 
   def find(%{id: id}) do
+    {:ok, Precinct.find_by_id(id)}
   end
 
   def find(%{}, %{address: address}, _) do
@@ -17,7 +18,6 @@ defmodule Idvote.Resolver.Precincts do
           opening_time: opening_time,
           closing_time: closing_time,
           date: date,
-          geometry: geometry,
           address_geoencoded: address_geoencoded
         } ->
           %Geo.Point{srid: address_srid, coordinates: {x, y}} = address_geoencoded
@@ -43,12 +43,11 @@ defmodule Idvote.Resolver.Precincts do
           {:error, "Please try again later"}
       end
     rescue
-      Ecto.NoResultsError -> {:error, "Unable to find polling place"}
+      Ecto.NoResultsError -> {:error, ["Sorry, unable to find a polling place for #{address}.", "We most likely do not have precinct data for your county"]}
     end
   end
 
   def autocomplete(%{}, %{address: address}, _) do
-
     case Mapbox.autocomplete(address) do
       {:ok, %Tesla.Env{status: 200, body: %{"features" => locations}}} ->
         suggestions =
