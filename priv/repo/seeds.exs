@@ -20,6 +20,10 @@ if Mix.env() == :dev or Mix.env() == :test do
     gid: 1,
     name: "Elementary School",
     address: "123 Potato WY",
+    address_geoencoded: %Geo.Point{
+      coordinates: {-5,-5},
+      srid: 4269
+    },
     geometry: %Geo.Polygon{
       coordinates: [[{0, 0}, {0, -10}, {-10, -10}, {-10, 0}, {0, 0}]],
       srid: 4269
@@ -35,6 +39,10 @@ if Mix.env() == :dev or Mix.env() == :test do
     gid: 2,
     name: "Fire House",
     address: "123 Gem RD",
+    address_geoencoded: %Geo.Point{
+      coordinates: {-5,5},
+      srid: 4269
+    },
     geometry: %Geo.Polygon{
       coordinates: [[{0, 0}, {-10, 0}, {-10, 10}, {0, 10}, {0, 0}]],
       srid: 4269
@@ -50,6 +58,10 @@ if Mix.env() == :dev or Mix.env() == :test do
     gid: 3,
     name: "Library",
     address: "123 Bonaparte BLVD",
+    address_geoencoded: %Geo.Point{
+      coordinates: {5,5},
+      srid: 4269
+    },
     geometry: %Geo.Polygon{
       coordinates: [[{0, 0}, {0, 10}, {10, 10}, {10, 0}, {0, 0}]],
       srid: 4269
@@ -65,6 +77,10 @@ if Mix.env() == :dev or Mix.env() == :test do
     gid: 4,
     name: "High School",
     address: "123 Snake ST",
+    address_geoencoded: %Geo.Point{
+      coordinates: {5,-5},
+      srid: 4269
+    },
     geometry: %Geo.Polygon{
       coordinates: [[{0, 0}, {10, 0}, {10, -10}, {0, -10}, {0, 0}]],
       srid: 4269

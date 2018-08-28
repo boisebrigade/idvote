@@ -1,20 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import '../App.css'
 
-export default class extends React.Component {
-  render() {
-    return (
-      <div className="container">
-
-        <div className="horizontal_rule"/>
-
-        <div className="footer">
-          <Link to="/am_i_registered" className="footer__action">Am I registered?</Link>
-          or
-          <Link to="/register" className="footer__action">Register to Vote!</Link>
-        </div>
-      </div>
-    );
-  }
-}
+export default () => <footer className="footer">
+  <div className="conatiner">
+    <nav className="footer__container">
+      <a href="https://apps.idahovotes.gov/YourPollingPlace/AmIRegistered.aspx" className="footer__link">Am I registered?</a>
+      or
+      <a href="https://apps.idahovotes.gov/OnlineVoterRegistration" className="footer__link">Register to Vote!</a>
+    </nav>
+  </div>
+</footer>
