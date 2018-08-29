@@ -35,6 +35,10 @@ function getClientEnvironment(publicUrl) {
     path: paths.dotenv,
   }).parsed
 
+  if (env === null) {
+    env = []
+  }
+
   env['NODE_ENV'] = process.env.NODE_ENV
 
   // Stringify all values so we can feed into Webpack DefinePlugin
