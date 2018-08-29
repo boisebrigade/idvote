@@ -44,6 +44,9 @@ defmodule Idvote.Mixfile do
       {:jason, ">= 1.0.0"},
       {:geo_postgis, "~> 2.0"},
       {:timex, "~> 3.1"},
+      {:absinthe, "~> 1.4"},
+      {:absinthe_relay, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
       {:mix_test_watch, "~> 0.8", only: [:dev, :test], runtime: false}
     ]
   end

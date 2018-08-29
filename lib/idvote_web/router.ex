@@ -2,21 +2,29 @@ defmodule IdvoteWeb.Router do
   use IdvoteWeb, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug(:accepts, ["html"])
   end
 
-  scope "/api", IdvoteWeb do
-    pipe_through :api
+  scope "/api" do
+    pipe_through(:api)
 
-    post("/find", WebController, :find)
-    post("/sms", TwilioController, :sms)
+    post("/sms", IdvoteWeb.TwilioController, :sms)
+
+    forward("/graphql", Absinthe.Plug, schema: Idvote.Schema)
+
+    forward(
+      "/graphiql",
+      Absinthe.Plug.GraphiQL,
+      schema: Idvote.Schema,
+      interface: :playground
+    )
   end
 
   scope "/", IdvoteWeb do
-    forward "/", StaticPlug
+    forward("/", StaticPlug)
   end
 end
