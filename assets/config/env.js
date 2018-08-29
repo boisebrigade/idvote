@@ -35,7 +35,7 @@ function getClientEnvironment(publicUrl) {
     path: paths.dotenv,
   }).parsed
 
-  if (env === null) {
+  if (env === undefined) {
     env = []
   }
 
